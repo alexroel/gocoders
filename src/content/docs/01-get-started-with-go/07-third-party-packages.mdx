@@ -1,0 +1,154 @@
+---
+title: Paquetes de terceros
+description: En Go, los paquetes de terceros son paquetes que no están incluidos en la biblioteca estándar de Go y que han sido desarrollados y mantenidos por la comunidad de desarrolladores de Go. Estos paquetes pueden ser utilizados para ampliar las funcionalidades de tu programa o para resolver problemas específicos.
+---
+
+En Go, los paquetes de terceros son paquetes que no están incluidos en la biblioteca estándar de Go y que han sido desarrollados y mantenidos por la comunidad de desarrolladores de Go. Estos paquetes pueden ser utilizados para ampliar las funcionalidades de tu programa o para resolver problemas específicos.
+
+## Manejo de módulos
+
+Go 1.11 introdujo un nuevo sistema de manejo de dependencias llamado módulos. Los módulos permiten a los desarrolladores de Go gestionar las dependencias de sus proyectos de una manera más eficiente y sencilla. Los módulos de Go se basan en un archivo llamado `go.mod` que se encuentra en la raíz de tu proyecto. Este archivo contiene información sobre las dependencias de tu proyecto, incluyendo la versión de cada paquete y la URL del repositorio de origen.
+
+Para utilizar el manejador de módulos en tu proyecto de Go, primero debes inicializar un nuevo módulo. Esto se hace ejecutando el siguiente comando en la línea de comandos en el directorio raíz de tu proyecto:
+
+```bash
+go mod init nombre-del-proyecto
+```
+
+Para nuestro ejemplo, vamos a inicializar un nuevo módulo llamado `hola-mundo`:
+
+```bash
+go mod init hola-mundo
+```
+
+import { FileTree } from '@astrojs/starlight/components';
+
+<FileTree>
+
+- hola-mundo/
+    - **go.mod**
+    - hola.exe (o hola en Linux/Mac)
+    - hola.go
+  
+</FileTree>
+
+```go
+//go.mod
+module hola-mundo
+
+go 1.23.2
+```
+
+El archivo `go.mod` se creará en la raíz de tu proyecto y contendrá la información básica sobre tu proyecto, incluyendo el nombre del módulo y la versión de Go que estás utilizando. A continuación, puedes agregar las dependencias de tu proyecto al archivo `go.mod` utilizando el comando `go get`.
+
+## Instalación de paquetes de terceros
+
+`rsc.io/quote` es un paquete de terceros que proporciona una función que devuelve una cita aleatoria. Para instalar este paquete en tu proyecto, puedes ejecutar el siguiente comando en la línea de comandos:
+
+```bash
+go get rsc.io/quote
+```
+
+Luego de instalar el paquete se creará un archivo `go.sum` en la raíz de tu proyecto, este archivo contiene información sobre las sumas de verificación de los módulos que se han descargado, lo que garantiza que las dependencias de tu proyecto sean consistentes y seguras.
+
+```go
+//go.sum
+golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c h1:qgOY6WgZOaTkIIMiVjBQcw93ERBE4m30iBm00nkL0i8=
+golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
+rsc.io/quote v1.5.2 h1:w5fcysjrx7yqtD/aO+QwRjYZOKnaM9Uh2b40tElTs3Y=
+rsc.io/quote v1.5.2/go.mod h1:LzX7hefJvL54yjefDEDHNONDjII0t9xZLPXsUe+TKr0=
+rsc.io/sampler v1.3.0 h1:7uVkIFmeBqHfdjD+gZwtXXI+RODJ2Wc4O7MPEh/QiW4=
+rsc.io/sampler v1.3.0/go.mod h1:T1hPZKmBbMNahiBKFy5HrXp6adAjACjK9JXDnKaTXpA=
+```
+
+También se agrega una nueva sección en el archivo `go.mod` con la información del paquete instalado:
+
+```go
+//go.mod
+module hola-mundo
+
+go 1.23.2
+
+require (
+	golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c // indirect
+	rsc.io/quote v1.5.2 // indirect
+	rsc.io/sampler v1.3.0 // indirect
+)
+```
+
+:::note
+- `require`: Lista de dependencias directas de tu proyecto.
+- `indirect`: Indica que la dependencia es indirecta, es decir, es una dependencia de una dependencia directa.
+:::
+
+
+Después de instalar el paquete, puedes importarlo en tu programa de la siguiente manera:
+
+```go
+// hola.go
+import "rsc.io/quote"
+
+func main() {
+    fmt.Println(quote.Hello())
+}
+
+```
+
+<FileTree>
+
+- hola-mundo/
+    - go.mod
+    - **go.sum**
+    - hola.exe (o hola en Linux/Mac)
+    - hola.go
+  
+</FileTree>
+
+El archivo `go.sum` se crea automáticamente cuando se agregan dependencias a tu proyecto. Este archivo contiene información sobre las sumas de verificación de los módulos que se han descargado, lo que garantiza que las dependencias de tu proyecto sean consistentes y seguras.
+
+`rsc.io/quote` también proporciona otras funciones para imprimir citas famosas, como `Go() `para imprimir una cita relacionada con el lenguaje de programación Go, o `Opt()` para imprimir una cita optimista. Puedes consultar la documentación del paquete para obtener más información sobre estas funciones y cómo utilizarlas.
+
+## Actualización de paquetes de terceros
+
+Para actualizar un paquete de terceros en tu proyecto, puedes ejecutar el siguiente comando en la línea de comandos:
+
+```bash
+go get -u nombre-del-paquete
+```
+
+Este comando actualizará el paquete a la última versión disponible. También puedes especificar una versión específica del paquete que deseas instalar utilizando la siguiente sintaxis:
+
+```bash
+go get nombre-del-paquete@versión
+```
+
+Por ejemplo, si deseas instalar la versión 1.2.3 del paquete `rsc.io/quote`, puedes ejecutar el siguiente comando:
+
+```bash
+go get rsc.io/quote@v1.2.3
+```
+
+Esto instalará la versión 1.2.3 del paquete `rsc.io/quote` en tu proyecto.
+
+## Eliminación de paquetes de terceros
+
+Para eliminar un paquete de terceros de tu proyecto, puedes ejecutar el siguiente comando en la línea de comandos:
+
+```bash
+go mod tidy
+```
+
+Este comando eliminará cualquier paquete de terceros que no esté siendo utilizado en tu proyecto. También puedes eliminar un paquete específico de tu proyecto utilizando el comando `go get` con la bandera `-u`:
+
+```bash
+go get -u nombre-del-paquete
+```
+
+Esto eliminará el paquete especificado de tu proyecto.
+
+## Conclusión
+
+Los paquetes de terceros son una parte importante del ecosistema de Go y te permiten ampliar las funcionalidades de tus programas de una manera sencilla y eficiente. Con el manejador de módulos de Go, puedes gestionar las dependencias de tus proyectos de una manera más eficiente y segura, lo que te permite centrarte en escribir código de alta calidad y funcional.
+
+
+

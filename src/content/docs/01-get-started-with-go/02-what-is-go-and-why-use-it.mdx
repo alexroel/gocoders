@@ -1,0 +1,164 @@
+---
+title: ¿Qué es y por que usar Go?
+description: Go es un lenguaje de programación de código abierto que fue creado en el año 2009 por Google. En este video, vamos a conocer qué es Go, para qué se utiliza y cuáles son sus características principales.
+---
+
+import { Icon } from '@astrojs/starlight/components';
+
+<Icon name="seti:go" label="El logo de Go" size='200px' color='#00acd7'/>
+
+Go, también conocido como **Golang**, es un lenguaje de programación de código abierto desarrollado por Google en 2007, y lanzado oficialmente en 2009. Fue diseñado por **Robert Griesemer**, **Rob Pike** y **Ken Thompson**, quienes querían crear un lenguaje eficiente, fácil de aprender, y que solucionara algunos problemas comunes en otros lenguajes como C++ o Java. Go combina la velocidad y eficiencia de los lenguajes compilados con la simplicidad y productividad que ofrecen los lenguajes modernos de programación.
+
+## ¿Por qué fue creado Go?
+
+Go fue creado para abordar algunas de las limitaciones que los ingenieros de Google enfrentaban al desarrollar grandes sistemas distribuidos. Con proyectos masivos, como la infraestructura de Google, los lenguajes existentes requerían tiempos de compilación largos, administración de dependencias complejas y poca eficiencia en la concurrencia. Go fue diseñado para:
+
+1. **Simplificar la programación concurrente**: Go tiene soporte nativo para la concurrencia mediante goroutines, lo que facilita la ejecución de múltiples tareas simultáneamente.
+2. **Ofrecer tiempos de compilación rápidos**: Go compila muy rápidamente, lo que aumenta la productividad del programador.
+3. **Eliminar la complejidad del código**: Go tiene una sintaxis simple, lo que reduce la posibilidad de errores y facilita la lectura del código.
+
+Puedes leer mas sobre el uso de Go en Google en [este artículo](https://go.dev/solutions/google/).
+
+## Características principales de Go
+
+import { Steps } from '@astrojs/starlight/components';
+
+<Steps>
+    1. **Simplicidad**: La sintaxis de Go es minimalista y fácil de aprender. No tiene una gran cantidad de características innecesarias, lo que lo hace muy accesible para los nuevos programadores.
+    
+    2. **Compilación rápida**: Go es un lenguaje compilado, lo que significa que el código se traduce directamente en binarios que se ejecutan rápidamente en la máquina sin necesidad de un intérprete.
+    
+    3. **Manejo eficiente de la concurrencia**: Las goroutines de Go permiten ejecutar funciones de manera concurrente con muy bajo costo, facilitando la creación de aplicaciones altamente escalables.
+
+    4. **Recolección de basura**: Go administra la memoria automáticamente mediante un sistema de garbage collection, lo que reduce errores comunes relacionados con la gestión de memoria.
+
+    5. **Baterías incluidas**: Go viene con una librería estándar muy robusta que cubre una gran cantidad de necesidades comunes como el manejo de archivos, red, concurrencia y pruebas.
+
+    6. **Portabilidad**: Go es multiplataforma y permite crear aplicaciones que se ejecutan en diferentes sistemas operativos con facilidad.
+</Steps>
+
+## ¿Qué puedes crear con Go?
+
+Go es un lenguaje versátil que se utiliza en una gran variedad de aplicaciones, incluyendo:
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+import { LinkButton } from '@astrojs/starlight/components';
+
+
+<CardGrid>
+    <Card title='Desarrollo Web' icon='laptop'> 
+        APIs y servidores web altamente escalables y rápidos. Utlizanmdo frameworks como Gin, Echo o Fiver.
+        <LinkButton href="https://go.dev/solutions/webdev" variant="minimal" target={'_blank'}>
+            Leer más 
+        </LinkButton>
+    </Card>
+    <Card title='Herramientas de línea de comandos (CLI)' icon='seti:powershell'> 
+        Debido a su eficiencia, Go se usa para crear utilidades de sistema y herramientas de administración.
+        <LinkButton href="https://go.dev/solutions/clis" variant="minimal" target={'_blank'}>
+            Leer más 
+        </LinkButton>
+    </Card>
+    <Card title='Servicios en la nube y de red' icon='rss'> 
+        Go es excelente para construir aplicaciones que manejan redes, como servidores proxy, balanceadores de carga y servidores HTTP.
+        <LinkButton href="https://go.dev/solutions/cloud" variant="minimal" target={'_blank'}>
+            Leer más 
+        </LinkButton>
+    </Card>
+    <Card title='Sistemas distribuidos' icon='seti:hex'> 
+        Ideal para aplicaciones que manejan múltiples procesos simultáneamente, como sistemas en la nube y microservicios.
+        <LinkButton href="https://go.dev/solutions/devops" variant="minimal" target={'_blank'}>
+            Leer más 
+        </LinkButton>
+    </Card>
+</CardGrid>
+
+En su página oficial, Go se describe como "un lenguaje que hace fácil construir software simple, confiable y eficiente". Esto lo convierte en una excelente opción para una amplia gama de aplicaciones modernas.
+
+Explora más en [la página oficial de Go](https://go.dev/solutions/use-cases).
+
+## ¿Cómo funciona Go? Proceso de creación y compilación
+
+El proceso de desarrollo con Go sigue estos pasos:
+
+<Steps>
+    1. **Escribir el código fuente**: Los desarrolladores escriben su código en archivos con la extensión `.go`.
+        ```go
+        // hola.go
+        package main
+
+        import "fmt"
+
+        func main() {
+            fmt.Println("¡Hola Mundo!")
+        }
+        ```
+    2. **Compilación**: Go toma el código fuente y lo compila en un archivo binario ejecutable. Esto se realiza utilizando el comando `go build`, lo que traduce el código Go a código máquina optimizado para tu sistema operativo y arquitectura.
+        ```sh
+        go build hola.go
+        ```
+
+    3. **Ejecución**: Una vez compilado, el binario puede ejecutarse directamente, lo que hace que el proceso sea muy rápido y eficiente.
+        ```sh
+        ./hola
+        ```
+    
+</Steps>
+
+## ¿Por qué muchas empresas usan Go?
+
+Empresas de todo el mundo eligen Go por su rendimiento, eficiencia en la concurrencia y facilidad de mantenimiento. Algunas de las principales razones por las que Go es popular en grandes compañías son:
+
+1. **Escalabilidad**: Gracias a las goroutines, Go permite que las aplicaciones manejen muchas conexiones concurrentes sin sacrificar el rendimiento.
+2. **Rendimiento**: Como lenguaje compilado, Go es extremadamente rápido, lo que lo hace ideal para servicios de backend de alta carga.
+3. **Mantenimiento**: Su sintaxis simple y sus prácticas de desarrollo claras permiten que los equipos de desarrollo mantengan el código fácilmente.
+4. **Portabilidad**: El mismo código Go puede compilarse y ejecutarse en diferentes sistemas operativos con un mínimo esfuerzo.
+
+## Principales empresas que utilizan Go
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+<LinkCard
+    title="Google"
+    href="https://go.dev/solutions/google/"
+    description="Naturalmente, Google utiliza Go para muchos de sus sistemas internos, incluyendo servicios en la nube."
+    target={'_blank'}
+/>
+
+<LinkCard
+    title="Netflix"
+    href="https://medium.com/netflix-techblog/application-data-caching-using-ssds-5bf25df851ef"
+    description="Utiliza Go para manejar servicios críticos debido a su eficiencia en sistemas distribuidos."
+    target={'_blank'}
+/>
+
+<LinkCard
+    title="Twitch"
+    href="https://blog.twitch.tv/en/2016/07/05/gos-march-to-low-latency-gc-a6fa96f06eb7/"
+    description="Utiliza Go para manejar la transmisión en tiempo real de contenido en su plataforma."
+    target={'_blank'}
+/>
+
+<LinkCard
+    title="Uber"
+    href="https://www.uber.com/en-PE/blog/aresdb/"
+    description="Ha adoptado Go para algunos de sus sistemas de backend debido a su rendimiento y capacidad de manejar altas cargas."
+    target={'_blank'}
+/>
+
+<LinkCard
+    title="Dropbox"
+    href="https://dropbox.tech/infrastructure/open-sourcing-our-go-libraries"
+    description="Migró de Python a Go para mejorar el rendimiento y la escalabilidad de sus servicios."
+    target={'_blank'}
+/>
+
+<LinkCard
+    title="Microsoft"
+    href="https://opensource.microsoft.com/blog/2018/02/21/go-lang-brian-ketelsen-explains-fast-growth/"
+    description="Utiliza Go para desarrollar herramientas internas y servicios en la nube."
+    target={'_blank'}
+/>
+
+En su página oficial, Go tiene una lista de [casos de uso](https://go.dev/solutions/case-studies) que muestran cómo empresas de todo el mundo utilizan Go para sus aplicaciones.
+
+En resumen, Go es una excelente opción para crear aplicaciones escalables, rápidas y eficientes. Su simplicidad, junto con sus capacidades de concurrencia y velocidad, lo han convertido en una opción preferida para muchas de las principales empresas tecnológicas del mundo.

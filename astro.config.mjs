@@ -1,27 +1,40 @@
-import { defineConfig } from 'astro/config';
-import starlight from '@astrojs/starlight';
+import { defineConfig } from "astro/config";
+import starlight from "@astrojs/starlight";
+import { sidebar } from "./src/config/sidebar";
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [
-		starlight({
-			title: 'My Docs',
-			social: {
-				github: 'https://github.com/withastro/starlight',
-			},
-			sidebar: [
-				{
-					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
-					],
-				},
-				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
-				},
-			],
-		}),
-	],
+  integrations: [
+    starlight({
+      title: "GoCoders",
+      title: {
+        es: "GoCoders",
+        en: "GoCoders",
+      },
+      defaultLocale: "root", // opcional
+      locales: {
+        root: {
+          label: "Español",
+          lang: "es", // lang es obligatorio para los locales raíz
+        },
+        en: {
+          label: "English",
+          lang: "en",
+        },
+      },
+      logo: {
+        src: "./src/assets/gocoders-logo.png",
+        alt: "GoCoders Logo",
+        // replacesTitle: true,
+      },
+      customCss: [
+        // Ruta relativa a tu archivo CSS personalizado
+        "./src/styles/custom.css",
+      ],
+      social: {
+        github: "https://github.com/withastro/starlight",
+      },
+      sidebar: sidebar,
+    }),
+  ],
 });
